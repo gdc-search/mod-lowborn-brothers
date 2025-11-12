@@ -48,6 +48,7 @@ mod.queue(function()
             foreach(brother in brothers)
             {
                 brother.m.Attributes = [];
+                brother.fillTalentValues();
                 brother.fillAttributeLevelUpValues(this.Const.XP.MaxLevelWithPerkpoints - 1);
             }
         }
@@ -73,20 +74,20 @@ mod.queue(function()
             ::Math.rand = rand;
         }
 
-        //q.setState = @(__original) function(_state)
-        //{
-        //    local rand = ::Math.rand;
-        //    ::Math.rand = randomMax;
-        //
-        //    __original(_state);
-        //
-        //    ::Math.rand = rand;
-        //}
+        q.setState = @(__original) function(_state)
+        {
+            local rand = ::Math.rand;
+            ::Math.rand = randomMax;
+        
+            __original(_state);
+        
+            ::Math.rand = rand;
+        }
     });
 
 
-    //mod.hook("scripts/contracts/contracts/break_greenskin_siege_contract", function(q) 
-    //{
+    mod.hook("scripts/contracts/contracts/break_greenskin_siege_contract", function(q) 
+    {
         q.spawnSiege = @(__original) function()
         {
             local rand = ::Math.rand;
@@ -96,10 +97,10 @@ mod.queue(function()
             
             ::Math.rand = rand;
         }
-    //});
+    });
 
-    //mod.hook("scripts/contracts/contracts/conquer_holy_site_contract", function(q) 
-    //{
+    mod.hook("scripts/contracts/contracts/conquer_holy_site_contract", function(q) 
+    {
         q.spawnEnemy = @(__original) function()
         {
             local rand = ::Math.rand;
@@ -109,10 +110,10 @@ mod.queue(function()
             
             ::Math.rand = rand;
         }
-    //});
+    });
 
-    //mod.hook("scripts/contracts/contracts/conquer_holy_site_southern_contract", function(q) 
-    //{
+    mod.hook("scripts/contracts/contracts/conquer_holy_site_southern_contract", function(q) 
+    {
         q.spawnEnemy = @(__original) function()
         {
             local rand = ::Math.rand;
@@ -122,11 +123,11 @@ mod.queue(function()
             
             ::Math.rand = rand;
         }
-    //});
+    });
 
-    //mod.hook("scripts/contracts/contracts/escort_caravan_contract", function(q) 
-    //{
-        q.spawnEnemy = @(__original) function()
+    mod.hook("scripts/contracts/contracts/escort_caravan_contract", function(q) 
+    {
+        q.spawnEnemies = @(__original) function()
         {
             local rand = ::Math.rand;
             ::Math.rand = randomMax;
@@ -135,5 +136,5 @@ mod.queue(function()
             
             ::Math.rand = rand;
         }
-    //});
+    });
 });
